@@ -1,0 +1,18 @@
+<%= form_for(@user, url: password_reset_path(params[:id])) do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="actions">
+    Password: <%= form.password_field :password, { required: true } %><br>
+    Password Confirmation: <%= form.password_field :password_confirmation, { required: true }  %><br>
+    <%= form.submit("Update Password") %>
+  </div>
+<% end %>

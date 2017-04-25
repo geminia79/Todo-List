@@ -1,0 +1,12 @@
+<%= form_tag('/login', method: :post) do |form| %>
+
+  <div class="actions">
+    Email: <%= email_field_tag :email, "", { required: true } %> <br>
+    Password: <%= password_field_tag :password, "", { required: true } %><br>
+
+    <p>
+      <%= link_to "forgot password?", new_password_reset_path %>
+    </p>
+    <%= submit_tag("Login") %>
+  </div>
+<% end %>

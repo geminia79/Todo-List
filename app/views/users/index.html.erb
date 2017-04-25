@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Users</h1>
+
+<%= form_tag(users_path, method: :get, id: "search_form", remote: true) do  %>
+  Name: <%= text_field_tag(:search, params[:search]) %>
+  <%= submit_tag("search users") %>
+<% end %>
+
+<div id="users"> 
+  <%= render "users_index" %>
+</div>
+
+<br>

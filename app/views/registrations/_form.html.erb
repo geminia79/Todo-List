@@ -1,0 +1,21 @@
+<%= form_for(:user, url: '/signup', method: :post) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    Name: <%= form.text_field :name %> <br>
+    Email: <%= form.email_field :email %> <br>
+    Password: <%= form.password_field :password %><br>
+    Password Confirmation: <%= form.password_field :password_confirmation %><br>
+    <%= form.submit("Create Account") %>
+  </div>
+<% end %>
