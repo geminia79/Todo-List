@@ -21,6 +21,4 @@
 /yarn-error.log
 
 .byebug_history
-
-public/assets/*
-npm-debug.log
+public/system/*

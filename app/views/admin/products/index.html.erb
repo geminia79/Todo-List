@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Products Listing</h1>
+<div class="row">
+  <%= render "shared/search_product_form" %>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <%= content_tag :th, sort_link(@search, :name) %>
+      <%= content_tag :th, sort_link(@search, :price) %>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.price %></td>
+        <td><%= link_to 'Show', admin_product_path(product.id) %></td>
+        <td><%= link_to 'Edit', edit_admin_product_path(product.id) %></td>
+        <td><%= link_to 'Destroy', admin_product_path(product.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

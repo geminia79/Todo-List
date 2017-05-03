@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  resources :products
-  get 'home/index'
+  get "/admin", to: "admin/dashboard#index", as: "admin_root"
   root "home#index"
+  get 'home/index'
+
   get '/auth/:provider/callback', to: 'oauth#create', as: "google_sign_in"
+  get '/auth/failure' => 'oauth#failure' 
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
@@ -12,6 +14,11 @@ Rails.application.routes.draw do
   post '/signup' => 'registrations#create'
 
   resources :password_resets
+  resources :users, only: [:index, :show, :edit, :update]
+  resources :products, only: [:index, :show]
 
-  resources :users, except: [:new, :create]
+  namespace :admin do
+    get 'dashboard/index'
+    resources :products, :users
+  end
 end

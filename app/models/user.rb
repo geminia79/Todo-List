@@ -6,6 +6,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :password, length: { minimum: 8 }, allow_nil: true, :confirmation => true
 
+  before_validation :downcase_email
 
   def self.from_omniauth(auth_hash)
     identity_params = {uid: auth_hash['uid'], provider: auth_hash['provider']}
@@ -39,6 +40,14 @@ class User < ApplicationRecord
 
   def within_reset_password_period?
      reset_password_sent_at.present? && reset_password_sent_at < 6.hours.ago
+  end
+
+  def admin?
+    is_admin.present? && is_admin
+  end
+
+  def downcase_email
+    email = email.try(:downcase)
   end
 
   def self.search(search)

@@ -1,18 +1,38 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
+<div class="row">
+  <div class="col-md-3">
+    <p class="lead">Products</p>
+    <div class="row text-center">
+      <% Product.all.limit(3).each do |product| %>
+        <div class="col-sm-12 col-lg-12 col-md-12">
+          <div class="thumbnail">
+            <%= image_tag product.product_image(:medium) %>
+            <div class="caption">
+              <h4 class="pull-right">$<%= product.price %></h4>
+              <h4 class="pull-left">
+                <%= link_to product.name.capitalize, product %>
+              </h4>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
+  </div>
 
-<p>
-  <%= link_to "<strong>User</strong>".html_safe, user_path(@product.user_id) %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+  <div class="col-md-9">
+    <p class="lead"><%= @product.name.capitalize %></p>
+    <div class="thumbnail">
+      <%= image_tag @product.product_image(:medium_1), class: "img-responsive" %>
+      <div class="caption-full">
+        <h4>
+          $<%= @product.price %>
+        </h4>
+        <p>
+          <%= @product.description.blank? ? @product.description : @product.description.html_safe %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
