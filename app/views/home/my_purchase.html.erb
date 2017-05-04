@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h1>My Purchased Product List</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Purchase Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @purchases.each do |purchase| %>
+      <tr>
+        <td><%= purchase.product.name %></td>
+        <td><%= purchase.product.price %></td>
+        <td><%= purchase.created_at.strftime("%d %b %Y") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

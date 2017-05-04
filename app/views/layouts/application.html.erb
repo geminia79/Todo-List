@@ -3,9 +3,10 @@
   <head>
     <title>ExampleApp</title>
     <%= csrf_meta_tags %>
-
+    <%= include_gon %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application' %>
+    <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
   </head>
 
   <body>

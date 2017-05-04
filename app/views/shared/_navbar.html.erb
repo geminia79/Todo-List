@@ -27,6 +27,9 @@
           <li>
             <%= link_to("Hi #{current_user.name}", "/") %>
           </li>
+          <li>
+            <%= link_to("My Purchase", home_my_purchase_path) %>
+          </li>
           <li><%= link_to "sign_out", logout_path %></li>
         <% else %>
           <li><%= link_to "Login", login_path %></li>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170503073258) do
+ActiveRecord::Schema.define(version: 20170504094633) do
 
   create_table "identities", force: :cascade do |t|
     t.integer "user_id"
@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(version: 20170503073258) do
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
+  create_table "purchases", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "buyer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email", null: false
@@ -48,6 +55,7 @@ ActiveRecord::Schema.define(version: 20170503073258) do
     t.string "remember_me_token"
     t.string "reset_password_token"
     t.boolean "is_admin"
+    t.string "braintree_customer_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

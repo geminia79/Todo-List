@@ -18,6 +18,9 @@
             <%= link_to product.name.capitalize, product %>
           </h4>
         </div>
+        <div>
+          <%= link_to("Buy", new_transaction_path(product_id: product.id), class: "btn btn-primary", style: "width: 100%; border-radius: 0; background-color: #f44336; border-color: #f44336;") %>
+        </div>
       </div>
     </div>
   <% end %>

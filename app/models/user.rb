@@ -3,6 +3,9 @@ class User < ApplicationRecord
   has_many :identities, dependent: :destroy
   has_many :products, dependent: :destroy
 
+  has_many :purchases, foreign_key: :buyer_id
+  has_many :products, through: :purchases
+
   validates :email, presence: true, uniqueness: true
   validates :password, length: { minimum: 8 }, allow_nil: true, :confirmation => true
 
@@ -56,5 +59,8 @@ class User < ApplicationRecord
     else
       all
     end
+  end
+  def has_payment_info?
+    braintree_customer_id
   end
 end
