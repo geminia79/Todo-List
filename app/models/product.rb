@@ -5,8 +5,8 @@ class Product < ApplicationRecord
 
   self.per_page = 10
 
-  # has_many :purchases
-  # has_many :buyers, through: :purchases
+  has_many :purchases
+  has_many :buyers, through: :purchases
 
   has_attached_file :product_image, styles: { medium: "320x150#", thumb: "100x100#", medium_1: "800x300#" }, default_url: "/assets/missing-products.png"
   validates_attachment_content_type :product_image, content_type: /\Aimage\/.*\z/
