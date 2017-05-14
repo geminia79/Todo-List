@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :identities, dependent: :destroy
-  has_many :products, dependent: :destroy
+  # has_many :products, dependent: :destroy
 
   has_many :purchases, foreign_key: :buyer_id
   has_many :products, through: :purchases
